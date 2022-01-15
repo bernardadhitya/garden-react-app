@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS klien (
   "id" SERIAL PRIMARY KEY, 
   nama TEXT NOT NULL,
   alamat TEXT,
-  email TEXT NOT NULL
+  email TEXT NOT NULL,
+  picture TEXT
 );
 
 CREATE TABLE IF NOT EXISTS barang (
@@ -17,7 +18,8 @@ CREATE TABLE IF NOT EXISTS barang (
   nama TEXT NOT NULL,
   harga INT NOT NULL,
   stok INT NOT NULL,
-  kategory TEXT
+  kategory TEXT,
+  picture TEXT
 );
 
 CREATE TABLE IF NOT EXISTS transaksi_barang (
@@ -27,15 +29,15 @@ CREATE TABLE IF NOT EXISTS transaksi_barang (
   tanggal DATE NOT NULL DEFAULT CURRENT_DATE,
   harga INT NOT NULL,
   qty INT NOT NULL,
-  total_harga INT NOT NULL,
-  thumbnail TEXT
+  total_harga INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS konsultan (
   "id" SERIAL PRIMARY KEY,
   nama TEXT NOT NULL,
   email TEXT NOT NULL,
-  harga INT NOT NULL
+  harga INT NOT NULL,
+  picture TEXT
 );
 
 CREATE TABLE IF NOT EXISTS transaksi_konsultasi (
