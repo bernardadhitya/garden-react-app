@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS transaksi_konsultasi (
   "id" SERIAL PRIMARY KEY,
   klien_id INT REFERENCES klien("id"),
   konsultan_id INT REFERENCES konsultan("id"),
+  tanggal DATE NOT NULL DEFAULT CURRENT_DATE,
   harga INT NOT NULL,
   qty INT NOT NULL,
   total_tarif INT NOT NULL
