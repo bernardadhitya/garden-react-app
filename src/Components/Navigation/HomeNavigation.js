@@ -23,7 +23,7 @@ const HomeNavigation = () => {
     <Switch>
       <Route exact path='/'><Redirect to='/home'/></Route>
       <PublicRoute path='/home' component={HomePage}/>
-      <PublicRoute path='/search' component={SearchPage}/>
+      <PublicRoute path='/product' component={SearchPage}/>
       <PublicRoute path='/login' component={Login}/>
       <PublicRoute path='/register' component={Register}/>
       <PublicRoute path='/news' component={NewsPage}/>

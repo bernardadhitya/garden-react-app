@@ -181,11 +181,11 @@ const Navbar = () => {
       },
       {
         'title': 'Artikel',
-        'redirect': ''
+        'redirect': '/news'
       },
       {
         'title': 'Produk',
-        'redirect': ''
+        'redirect': '/product'
       },
       {
         'title': 'Riwayat',

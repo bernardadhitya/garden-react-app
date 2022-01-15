@@ -2,6 +2,7 @@ import { Grid } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react';
 import { getNews } from '../../firebase';
+import './NewsPage.css';
 
 const NewsPage = () => {
 
@@ -10,7 +11,8 @@ const NewsPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let fetchedNews = await getNews();
+      let fetchedNews = await getNews("gardening");
+      // fetchedNews = fetchedNews.filter((article) => article.source.name === 'The Guardian')
       let groupedNews = []
       while (fetchedNews.length > 0) {
         groupedNews.push(fetchedNews.splice(0,21))
@@ -51,7 +53,14 @@ const NewsPage = () => {
   
   return (
     <div>
-      <h2 style={{margin: '180px 0 20px 100px'}}>Berita & Artikel</h2>
+      <div className='news-banner-wrapper'>
+        <div style={{color: 'black', fontFamily: 'Avenir-Next', fontSize: '64px'}}>
+          Artikel
+        </div>
+        <p style={{color: 'black', fontSize: '18px'}}>
+          Lihat artikel terbaru kami untuk tips dan pengetahuan berkebun
+        </p>
+      </div>
       <div style={{padding: '0 100px'}}>
         <Grid container>
           {renderNewsCards()}
