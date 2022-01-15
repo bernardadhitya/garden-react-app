@@ -3,7 +3,7 @@ import React from 'react';
 import { formattedCurrency } from '../../Constants/format';
 import './ItemCard.css';
 import { useHistory } from 'react-router-dom';
-import { addUserSearchHistory } from '../../firebase';
+import {} from '../../firebase';
 
 const ItemCard = (props) => {
   const {
@@ -16,7 +16,6 @@ const ItemCard = (props) => {
   const history = useHistory();
 
   const handleClick = async () => {
-    await addUserSearchHistory(productId);
     history.push(`/${productId}`);
   }
 

@@ -3,7 +3,7 @@ import React from 'react';
 import StarIcon from '@material-ui/icons/Star';
 import './ConsultantCard.css';
 import { useHistory } from 'react-router-dom';
-import { addUserSearchHistory } from '../../firebase';
+import {} from '../../firebase';
 
 const ConsultantCard = (props) => {
   const {
@@ -16,7 +16,6 @@ const ConsultantCard = (props) => {
   const history = useHistory();
 
   const handleClick = async () => {
-    await addUserSearchHistory(productId);
     history.push(`/${productId}`);
   }
 

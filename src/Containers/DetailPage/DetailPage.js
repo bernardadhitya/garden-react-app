@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import {
-  addToWishlist,
-  getProductById,
-  getSimilarProductsByProductId,
-  getWishlistByCurrentUserId,
-  removeFromWishlist,
-  fetchCurrentUser
-} from '../../firebase';
+import {} from '../../firebase';
 import './DetailPage.css';
 import StarIcon from '@material-ui/icons/Star';
 import { Grid, Snackbar } from '@material-ui/core';
@@ -31,30 +24,13 @@ const DetailPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const currentUserWishlist = await getWishlistByCurrentUserId();
-      const fetchedItem = await getProductById(id);
-      const fetchedSimilarItems = await getSimilarProductsByProductId(id);
-      const fetchedCurrentUser = await fetchCurrentUser();
-      setInWishlist(currentUserWishlist.wishlist.includes(parseInt(id)));
-      setItem(fetchedItem);
-      setSimilarItems(fetchedSimilarItems);
-      setCurrentUser(fetchedCurrentUser);
+      
     }
     fetchData();
   }, [refresh]);
 
   const handleAddOrRemoveWishlist = async () => {
-    if (!inWishlist){
-      await addToWishlist(parseInt(id));
-      setSeverity('success');
-      setMessage('Produk ini sudah masuk ke wishlist anda');
-    } else {
-      await removeFromWishlist(parseInt(id));
-      setSeverity('error');
-      setMessage('Produk ini sudah dihapus dari wishlist anda');
-    }
-    setOpenSnackbar(true);
-    setRefresh(refresh + 1);
+    
   }
 
   const Alert = (props) => {

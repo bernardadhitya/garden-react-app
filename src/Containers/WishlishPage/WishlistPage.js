@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
 import ItemCard from '../../Components/ItemCard/ItemCard';
-import { getAllProductsInWishlist } from '../../firebase';
+import {} from '../../firebase';
 import './WishlistPage.css';
 
 const WishlistPage = () => {
@@ -9,8 +9,7 @@ const WishlistPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const feetchedItems = await getAllProductsInWishlist();
-      setItems(feetchedItems);
+      
     }
     fetchData();
   }, []);

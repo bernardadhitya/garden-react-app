@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import ItemCard from '../../Components/ItemCard/ItemCard';
 import ConsultantCard from '../../Components/ConsultantCard/ConsultantCard';
 import { allMarketplaces } from '../../Constants/marketplaces';
-import { getNews, getRecommendedProducts } from '../../firebase';
+import {} from '../../firebase';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -17,10 +17,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedItems = await getRecommendedProducts();
-      const fetchedNews = await getNews();
-      setItems(fetchedItems);
-      setNews(fetchedNews);
+      
     }
     fetchData();
   }, []);
