@@ -62,26 +62,11 @@ export const createUser = async (userData) => {
   return user;
 }
 
-export const getAllProducts = async (filters) => {
-  const {
-    minPrice,
-    maxPrice,
-    selectedCategories,
-    selectedMarketplaces,
-    selectedRating,
-    sortBy,
-    ascendingOrder
-  } = filters;
+export const getAllProducts = async () => {
 
   let { data: allProducts } = await supabase
   .from('products')
   .select('*')
-  .gte('price', minPrice)
-  .lte('price', maxPrice)
-  .in('category', selectedCategories)
-  .in('source', selectedMarketplaces)
-  .gte('rating', selectedRating)
-  .order(sortBy, { ascending: ascendingOrder })
 
   let groupedProducts = []
 
