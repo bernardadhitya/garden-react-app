@@ -38,8 +38,7 @@ export const signOut = async () => {
 
 export const fetchCurrentUser = async () => {
   const isLoggedIn = fireAuth.currentUser;
-  const userData = !!isLoggedIn ? await getUserByEmail(isLoggedIn.email) : null;
-  return !!isLoggedIn ? userData[0] : userData;
+  return !!isLoggedIn ? await getUserByEmail(isLoggedIn.email) : null;
 }
 
 export const getUserByEmail = async (email) => {
