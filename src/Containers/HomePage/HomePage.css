@@ -1,0 +1,121 @@
+@font-face {
+  font-family: Avenir-Next;
+  src: url(../../Assets/fonts/avenir_next.otf);
+}
+
+
+.home-page-wrapper {
+  margin: 100px 0 0 0;
+}
+
+.home-banner-wrapper {
+  background-image: url('../../Assets/images/home-banner.png');
+  width: 100%;
+  padding: 100px 40px;
+  background-size: contain;
+  background-repeat:no-repeat;
+}
+
+.home-redirect-button {
+  width: 150px;
+  margin: 20px 8px 4px 8px;
+  border-radius: 10px;
+  background-color: #57946C;
+  color: #ffffff;
+  border: 1px solid #57946C;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.news-card{
+  margin: 15px;
+  border-radius: 10px;
+  padding: 0;
+  box-shadow: 0px 2px 9px 4px rgba(216,216,216,0.5);
+  -webkit-box-shadow: 0px 2px 9px 4px rgba(216,216,216,0.5);
+  -moz-box-shadow: 0px 2px 9px 4px rgba(216,216,216,0.5);
+  cursor: pointer;
+}
+
+.news-content{
+  padding: 0 20px 20px 20px;
+}
+
+.news-card .news-title{
+  font-weight: 650;
+  margin: 20px 0;
+  text-transform: capitalize;
+}
+
+.news-card .news-price{
+  font-weight: 650;
+  color: #57946C;
+  margin: 10px 0;
+}
+
+.news-card .news-rating{
+  display: flex;
+  align-items: center;
+}
+
+.news-card .news-thumbnail {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: rgb(220, 220, 220);
+}
+
+.news-card .news-thumbnail-empty {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 10px;
+  background-color: rgb(220, 220, 220);
+}
+
+.news-card .news-source {
+  height: 24px;
+  margin: 10px 0 0 0;
+  align-items: right;
+}
+
+.more-button {
+  display: flex;
+  margin: 40px 0 0 0;
+  border: 1px solid rgba(0,0,0,0.2);
+  color: rgba(0,0,0,0.7);
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  cursor: pointer;
+  padding: 15px 0;
+}
+
+.section-thumbnail-konsultasi {
+  width: 240px;
+  justify-content: center;
+  background-size: cover;
+  background-repeat:no-repeat;
+  padding: 40px;
+  background-image: url('../../Assets/images/konsultasi-thumbnail.png');
+}
+
+.section-thumbnail-artikel {
+  width: 240px;
+  background-size: cover;
+  background-repeat:no-repeat;
+  padding: 40px;
+  background-image: url('../../Assets/images/artikel-thumbnail.png');
+}
+
+.section-thumbnail-belanja {
+  width: 240px;
+  background-size: cover;
+  background-repeat:no-repeat;
+  padding: 40px;
+  background-image: url('../../Assets/images/belanja-thumbnail.png');
+}

@@ -1,0 +1,46 @@
+.consultant-card{
+  margin: 15px;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 2px 9px 4px rgba(216,216,216,0.5);
+  -webkit-box-shadow: 0px 2px 9px 4px rgba(216,216,216,0.5);
+  -moz-box-shadow: 0px 2px 9px 4px rgba(216,216,216,0.5);
+  cursor: pointer;
+}
+
+.consultant-content{
+  padding: 30px 20px;
+}
+
+.consultant-card .consultant-name{
+  font-weight: 500;
+  text-transform: capitalize;
+  overflow: hidden;
+}
+
+.consultant-card .consultant-rating{
+  display: flex;
+  align-items: center;
+}
+
+.consultant-card .image-thumbnail {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 100px;
+  background-color: rgb(220, 220, 220);
+}
+
+.consultant-card .image-thumbnail-empty {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 10px;
+  background-color: rgb(220, 220, 220);
+}
+
+.consultant-card .consultant-source {
+  height: 24px;
+  margin: 10px 0 0 0;
+  align-items: right;
+}
