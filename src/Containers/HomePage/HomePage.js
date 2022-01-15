@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import ItemCard from '../../Components/ItemCard/ItemCard';
 import ConsultantCard from '../../Components/ConsultantCard/ConsultantCard';
 import { allMarketplaces } from '../../Constants/marketplaces';
-import {} from '../../firebase';
+import { getAllConsultants, getAllProducts, getNews } from '../../firebase';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -12,12 +12,17 @@ const HomePage = () => {
   const history = useHistory();
 
   const [consultants, setConsultants] = useState([]);
-  const [items, setItems] = useState([]);
+  const [products, setProducts] = useState([]);
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      
+      const fetchedConsultants = await getAllConsultants();
+      const fetchedProducts = await getAllProducts();
+      const fetchedNews = await getNews("gardening");
+      setConsultants(fetchedConsultants)
+      setProducts(fetchedProducts[0].slice(0,3))
+      setNews(fetchedNews.slice(0,3));
     }
     fetchData();
   }, []);
@@ -61,27 +66,16 @@ const HomePage = () => {
   }
 
   const renderRecommendedItemCards = () => {
-    const dummyItems = [
-      {
-        'image': 'https://images.tokopedia.net/img/cache/900/product-1/2020/8/27/83777980/83777980_981f0e8f-de39-4d8c-ba7b-19020902a542_2000_2000',
-        'title': 'Pestisida Tanaman Obat Hama Kutu Putih',
-        'price': '60000',
-        'source': '',
-        'rating': '',
-        'productId': ''
-      }
-    ]
-    if (items.length === 0) setItems(dummyItems);
-    return items.map(item => {
-      const { image, title, price, source, rating, product_id} = item;
+    if (products.length === 0) return;
+    return products.map(item => {
+      const { picture, nama, harga, rating=4.8, id} = item;
       return (
         <ItemCard
-          image={image}
-          title={title}
-          price={price}
-          source={source}
+          image={picture}
+          title={nama}
+          price={harga}
           rating={rating}
-          productId={product_id}
+          productId={id}
         />
       )
     })
@@ -106,23 +100,15 @@ const HomePage = () => {
   }
 
   const renderConsultantsCards = () => {
-    const dummyItems = [
-      {
-        'image': 'https://images.tokopedia.net/img/cache/900/product-1/2020/8/27/83777980/83777980_981f0e8f-de39-4d8c-ba7b-19020902a542_2000_2000',
-        'name': 'Mary Jane',
-        'rating': '4.9',
-        'productId': ''
-      }
-    ]
-    if (consultants.length === 0) setConsultants(dummyItems);
+    if (consultants.length === 0) return;
     return consultants.map(consultant => {
-      const { image, name, rating, product_id} = consultant;
+      const { picture, nama, rating=4.9, id} = consultant;
       return (
         <ConsultantCard
-          image={image}
-          name={name}
+          image={picture}
+          name={nama}
           rating={rating}
-          productId={product_id}
+          productId={id}
         />
       )
     })
