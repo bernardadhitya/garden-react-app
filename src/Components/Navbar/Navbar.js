@@ -177,7 +177,7 @@ const Navbar = () => {
     const menuItems = [
       {
         'title': 'Konsultasi',
-        'redirect': ''
+        'redirect': '/consultant'
       },
       {
         'title': 'Artikel',
@@ -189,7 +189,7 @@ const Navbar = () => {
       },
       {
         'title': 'Riwayat',
-        'redirect': ''
+        'redirect': '/'
       }
     ]
     return menuItems.map(menuItem => {

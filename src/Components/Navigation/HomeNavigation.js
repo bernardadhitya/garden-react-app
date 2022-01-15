@@ -9,6 +9,7 @@ import PublicRoute from './PublicRoute';
 import Register from '../../Containers/Register/Register';
 import HomePage from '../../Containers/HomePage/HomePage';
 import NewsPage from '../../Containers/NewsPage/NewsPage';
+import ConsultantPage from '../../Containers/ConsultantPage/ConsultantPage';
 
 const UserNavigation = ({match}) => {
   return (
@@ -24,9 +25,10 @@ const HomeNavigation = () => {
       <Route exact path='/'><Redirect to='/home'/></Route>
       <PublicRoute path='/home' component={HomePage}/>
       <PublicRoute path='/product' component={SearchPage}/>
+      <PublicRoute path='/news' component={NewsPage}/>
+      <PublicRoute path='/consultant' component={ConsultantPage}/>
       <PublicRoute path='/login' component={Login}/>
       <PublicRoute path='/register' component={Register}/>
-      <PublicRoute path='/news' component={NewsPage}/>
       <Route path='/user' component={UserNavigation}/>
       <PublicRoute path='/:id' component={DetailPage}/>
     </Switch>

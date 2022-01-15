@@ -95,14 +95,14 @@ const HomePage = () => {
   }
 
   const renderSectionThumbnails = () => {
-    return <div style={{display: 'flex'}} onClick={() => handleClick('product')}>
+    return <div style={{display: 'flex'}} onClick={() => handleClick('consultant')}>
       <div class='section-thumbnail-konsultasi'>
         <h3 style={{textAlign: 'center', color: 'white', fontFamily: 'Avenir-Next', fontSize: '24px'}}>Konsultasi</h3>
       </div>
       <div class='section-thumbnail-artikel' onClick={() => handleClick('news')}>
         <h3 style={{textAlign: 'center', color: 'white', fontFamily: 'Avenir-Next', fontSize: '24px'}}>Artikel</h3>
       </div>
-      <div class='section-thumbnail-belanja'>
+      <div class='section-thumbnail-belanja' onClick={() => handleClick('product')}>
         <h3 style={{textAlign: 'center', color: 'white', fontFamily: 'Avenir-Next', fontSize: '24px'}}>Belanja</h3>
       </div>
     </div>
