@@ -132,7 +132,13 @@ export const getAllConsultants = async () => {
   .from('konsultan')
   .select('*')
 
-  return consultants;
+  let groupedProducts = []
+
+  while (consultants.length > 0) {
+    groupedProducts.push(consultants.splice(0,20))
+  }
+
+  return groupedProducts;
 }
 
 export const getConsultantById = async (id) => {

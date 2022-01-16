@@ -112,7 +112,7 @@ const ConsultantDetailPage = () => {
             </Grid>
             <Grid item xs={3}>
               <div
-                className='similar-consultant-redirect-button'
+                className='consultant-detail-redirect-button'
               >
                 <h4>Konsultasi</h4>
               </div>

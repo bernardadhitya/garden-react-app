@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { getAllProducts, getProductsByQueries } from '../../firebase';
+import { getAllConsultants, getAllProducts, getProductsByQueries } from '../../firebase';
 import qs from 'query-string';
 import './ConsultantPage.css';
 import Pagination from '@material-ui/lab/Pagination';
@@ -16,6 +16,7 @@ import { getAllCategories, getCategoriesByTopics } from '../../Constants/categor
 import { allMarketplaces } from '../../Constants/marketplaces';
 import SortMenu from '../../Components/SortMenu/SortMenu';
 import SearchBar from '../../Components/SearchBar/SearchBar';
+import ConsultantCard from '../../Components/ConsultantCard/ConsultantCard';
 
 var _ = require('lodash');
 
@@ -38,7 +39,7 @@ const ConsultantPage = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const [items, setItems] = useState([]);
+  const [consultants, setConsultants] = useState([]);
   const [page, setPage] = useState(1);
   const [refresh, setRefresh] = useState(0);
   const [sortBy, setSortBy] = useState('rating');
@@ -50,26 +51,26 @@ const ConsultantPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-
-      const fetchedItems = await getAllProducts();
-      setItems(fetchedItems);
+      const fetchedConsultant = await getAllConsultants();
+      console.log(fetchedConsultant);
+      setConsultants(fetchedConsultant);
     }
     fetchData();
   }, [location, refresh]);
 
   const renderItemCards = () => {
-    return items.length > 0 ? (
+    return consultants.length > 0 ? (
       <Grid container>
-        { items[page-1].map(item => {
-            const { product_id, image, title, price, source, rating } = item;
+        { consultants[page-1].map(item => {
+            const { id, nama, harga, picture } = item;
             return (
-              <ItemCard
-                image={image}
-                title={title}
-                price={price}
-                source={source}
-                rating={rating}
-                productId={product_id}
+              <ConsultantCard
+                image={picture}
+                name={nama}
+                price={harga}
+                rating={4.9}
+                consultantId={id}
+                verbose={true}
               />
             )
         })}
@@ -110,7 +111,7 @@ const ConsultantPage = () => {
         {renderItemCards()}
         <div className='pagination-container'>
           <Pagination
-            count={Math.ceil(items.length)}
+            count={Math.ceil(consultants.length)}
             shape="rounded"
             page={page}
             onChange={(event, value) => setPage(value)}
