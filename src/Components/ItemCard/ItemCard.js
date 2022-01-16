@@ -16,7 +16,7 @@ const ItemCard = (props) => {
   const history = useHistory();
 
   const handleClick = async () => {
-    history.push(`/${productId}`);
+    history.push(`/product/${productId}`);
   }
 
   return (

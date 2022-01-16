@@ -26,8 +26,7 @@
 
 .item-detail-image {
   border-radius: 10px;
-  height: 250px;
-  width: 250px;
+  width: 100%;
   object-fit: cover;
   background-color: rgb(220, 220, 220);;
 }
@@ -75,7 +74,7 @@
 }
 
 .similar-item-redirect-button {
-  border-radius: 10px;
+  border-radius: 40px;
   background-color: #57946C;
   color: #ffffff;
   border: 1px solid #57946C;
@@ -83,6 +82,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 15px 0;
+  width: 85%;
 }
 
 .similar-item-price {
