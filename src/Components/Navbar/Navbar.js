@@ -191,12 +191,14 @@ const Navbar = () => {
       {
         'title': 'Produk',
         'redirect': '/product'
-      },
-      {
-        'title': 'Riwayat',
-        'redirect': '/transaction'
       }
     ]
+    if (!!currentUser) {
+      menuItems.push({
+        'title': 'Riwayat',
+        'redirect': '/transaction'
+      })
+    }
     return menuItems.map(menuItem => {
       return <a
         href={menuItem.redirect}

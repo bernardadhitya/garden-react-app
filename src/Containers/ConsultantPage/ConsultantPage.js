@@ -103,7 +103,9 @@ const ConsultantPage = () => {
       <div style={{padding: '40px 100px'}}>
         <Grid container>
           <Grid item xs={6}>
-            <SearchBar handleSearch={(value) => handleSearch(value)}/>
+            <div style={{marginBottom: '40px'}}>
+              <SearchBar handleSearch={(value) => handleSearch(value)}/>
+            </div>
           </Grid>
           <Grid item xs={6}>
           </Grid>
