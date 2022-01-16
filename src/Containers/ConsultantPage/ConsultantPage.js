@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { getAllConsultants, getAllProducts, getProductsByQueries } from '../../firebase';
+import { getAllConsultants, getAllProducts, getConsultantsByName, getProductsByQueries } from '../../firebase';
 import qs from 'query-string';
 import './ConsultantPage.css';
 import Pagination from '@material-ui/lab/Pagination';
@@ -51,7 +51,8 @@ const ConsultantPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedConsultant = await getAllConsultants();
+      const fetchedConsultant = _.isEmpty(queries) ? 
+        await getAllConsultants() : await getConsultantsByName(queries.query);
       console.log(fetchedConsultant);
       setConsultants(fetchedConsultant);
     }
@@ -82,6 +83,13 @@ const ConsultantPage = () => {
     )
   }
 
+  const handleSearch = (searchString) => {
+    history.push({
+      search: `?query=${searchString.replace('&', '%26')}`,
+      pathname: '/consultant/'
+    });
+  }
+
   return (
     <div>
       <div className='consultant-banner-wrapper'>
@@ -95,7 +103,7 @@ const ConsultantPage = () => {
       <div style={{padding: '40px 100px'}}>
         <Grid container>
           <Grid item xs={6}>
-            <SearchBar/>
+            <SearchBar handleSearch={(value) => handleSearch(value)}/>
           </Grid>
           <Grid item xs={6}>
           </Grid>

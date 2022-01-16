@@ -76,7 +76,6 @@ export const getAllProducts = async () => {
 }
 
 export const getProductsByTitle = async (searchString) => {
-
   let { data: barang } = await supabase
   .from('barang')
   .select('*')
@@ -116,6 +115,21 @@ export const getClientByEmail = async (email) => {
   .eq('email', email)
 
   return clients[0];
+}
+
+export const getConsultantsByName = async (searchString) => {
+  let { data: consultants } = await supabase
+  .from('konsultan')
+  .select('*')
+  .ilike('nama', `%${searchString}%`)
+
+  let groupedProducts = []
+
+  while (consultants.length > 0) {
+    groupedProducts.push(consultants.splice(0,20))
+  }
+
+  return groupedProducts;
 }
 
 export const getConsultantByEmail = async (email) => {
