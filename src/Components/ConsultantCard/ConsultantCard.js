@@ -16,7 +16,7 @@ const ConsultantCard = (props) => {
   const history = useHistory();
 
   const handleClick = async () => {
-    history.push(`/${productId}`);
+    history.push(`/consultant/${productId}`);
   }
 
   return (

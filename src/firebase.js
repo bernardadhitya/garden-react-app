@@ -135,6 +135,15 @@ export const getAllConsultants = async () => {
   return consultants;
 }
 
+export const getConsultantById = async (id) => {
+  let { data: consultants } = await supabase
+  .from('konsultan')
+  .select('*')
+  .eq('id', id)
+
+  return consultants[0];
+}
+
 export const getClientChatListByConsultantId = async (consultantId) => {
   let { data: clientList } = await supabase
   .from('chat')
