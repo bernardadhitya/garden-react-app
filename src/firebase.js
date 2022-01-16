@@ -6,7 +6,7 @@ import { createClient } from '@supabase/supabase-js'
 import axios from 'axios';
 
 firebase.initializeApp(firebaseConfig);
-const fireAuth = firebase.auth();
+export const fireAuth = firebase.auth();
 
 const supabase = createClient(supabaseConfig.url, supabaseConfig.key)
 
@@ -38,6 +38,7 @@ export const signOut = async () => {
 
 export const fetchCurrentUser = async () => {
   const isLoggedIn = fireAuth.currentUser;
+  console.log('isLoggedIn:', isLoggedIn);
   return !!isLoggedIn ? await getUserByEmail(isLoggedIn.email) : null;
 }
 
@@ -204,6 +205,30 @@ export const getProductTransactionByClientId = async (clientId) => {
   return productTransactions
 }
 
+export const getProductTransactionByCurrentUser = async () => {
+  const currentUser = await fetchCurrentUser();
+  console.log(currentUser);
+  if (!!!currentUser) return null;
+
+  let { data: productTransaction } = await supabase
+  .from('transaksi_barang')
+  .select(`
+    barang (
+      id,
+      nama,
+      picture
+    ),
+    tanggal,
+    qty,
+    total_harga
+  `)
+  .eq('klien_id', currentUser.id)
+
+  productTransaction = productTransaction.map(product => { return {...product, type: 'product'} });
+
+  return productTransaction
+}
+
 export const getConsultationTransactionByClientId = async (clientId) => {
   let { data: consultationTransactions } = await supabase
   .from('transaksi_konsultasi')
@@ -211,6 +236,46 @@ export const getConsultationTransactionByClientId = async (clientId) => {
   .eq('klien_id', clientId)
 
   return consultationTransactions
+}
+
+export const getConsultationTransactionByCurrentUser = async () => {
+  const currentUser = await fetchCurrentUser();
+  console.log(currentUser);
+  if (!!!currentUser) return null;
+
+  let { data: consultationTransactions } = await supabase
+  .from('transaksi_konsultasi')
+  .select(`
+    konsultan (
+      id,
+      nama,
+      picture
+    ),
+    tanggal,
+    qty,
+    total_harga
+  `)
+  .eq('klien_id', currentUser.id)
+
+  consultationTransactions = consultationTransactions.map(consultation => { return {...consultation, type: 'consultation'} });
+
+  return consultationTransactions
+}
+
+export const getTransactionsByCurrentUser = async () => {
+  const consultationTransactions = await getConsultationTransactionByCurrentUser();
+  const productTransactions = await getProductTransactionByCurrentUser();
+  const transactions = [...consultationTransactions, ...productTransactions]
+    .sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+
+  let groupedTransactions = []
+
+  while (transactions.length > 0) {
+    groupedTransactions.push(transactions.splice(0,20))
+  }
+
+  return groupedTransactions;
+
 }
 
 export const getNews = async (query) => {
