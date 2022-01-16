@@ -10,7 +10,7 @@ import {
   ListItemText
 } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
-import { fetchCurrentUser, signOut } from '../../firebase';
+import { fetchCurrentUser, fireAuth, signOut } from '../../firebase';
 import { AccountCircleTwoTone } from '@material-ui/icons';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -57,9 +57,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedCurrentUser = await fetchCurrentUser();
-      console.log(fetchedCurrentUser);
-      setCurrentUser(fetchedCurrentUser);
+      fireAuth.onAuthStateChanged(async user => {
+        if (user) {
+          const fetchedCurrentUser = await fetchCurrentUser();
+          console.log('current user:', fetchedCurrentUser);
+          setCurrentUser(fetchedCurrentUser);
+        }
+      })
     }
     fetchData();
   }, [location]);
@@ -190,7 +194,7 @@ const Navbar = () => {
       },
       {
         'title': 'Riwayat',
-        'redirect': '/'
+        'redirect': '/transaction'
       }
     ]
     return menuItems.map(menuItem => {
