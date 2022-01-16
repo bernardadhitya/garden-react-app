@@ -58,6 +58,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       const fetchedCurrentUser = await fetchCurrentUser();
+      console.log(fetchedCurrentUser);
       setCurrentUser(fetchedCurrentUser);
     }
     fetchData();
@@ -158,7 +159,7 @@ const Navbar = () => {
                 <Grid item xs={2}></Grid>
                 <Grid item xs={7}>
                   <div className='text-no-margin'>
-                    <h5>{!!currentUser ? currentUser.username : '-'}</h5>
+                    <h5>{!!currentUser ? currentUser.nama : '-'}</h5>
                   </div>
                 </Grid>
               </Grid>

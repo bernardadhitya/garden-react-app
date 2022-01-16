@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { getAllProducts, getProductsByQueries } from '../../firebase';
+import { getAllProducts, getProductsByTitle } from '../../firebase';
 import qs from 'query-string';
 import './SearchPage.css';
 import Pagination from '@material-ui/lab/Pagination';
@@ -50,8 +50,9 @@ const SearchPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const fetchedItems = _.isEmpty(queries) ? 
+        await getAllProducts() : await getProductsByTitle(queries.query);
 
-      const fetchedItems = await getAllProducts();
       setItems(fetchedItems);
     }
     fetchData();
@@ -61,15 +62,14 @@ const SearchPage = () => {
     return items.length > 0 ? (
       <Grid container>
         { items[page-1].map(item => {
-            const { product_id, image, title, price, source, rating } = item;
+            const { picture, nama, harga, rating=4.8, id} = item;
             return (
               <ItemCard
-                image={image}
-                title={title}
-                price={price}
-                source={source}
+                image={picture}
+                title={nama}
+                price={harga}
                 rating={rating}
-                productId={product_id}
+                productId={id}
               />
             )
         })}
@@ -79,6 +79,13 @@ const SearchPage = () => {
         <h3>Tidak menemukan barang yang anda cari</h3>
       </div>
     )
+  }
+
+  const handleSearch = (searchString) => {
+    history.push({
+      search: `?query=${searchString.replace('&', '%26')}`,
+      pathname: '/product/'
+    });
   }
 
   return (
@@ -94,7 +101,7 @@ const SearchPage = () => {
       <div style={{padding: '40px 100px'}}>
         <Grid container>
           <Grid item xs={6}>
-            <SearchBar/>
+            <SearchBar handleSearch={(value) => handleSearch(value)}/>
           </Grid>
           <Grid item xs={6}>
           </Grid>
