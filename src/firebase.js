@@ -277,6 +277,29 @@ export const getTransactionsByCurrentUser = async () => {
 
 }
 
+export const purchaseProduct = async (clientId, productId, price, qty, stock) => {
+  const { data: productTransactions } = await supabase
+  .from('transaksi_barang')
+  .insert([
+    {
+      klien_id: clientId,
+      barang_id: productId,
+      harga: price,
+      qty,
+      total_harga: price * qty
+    },
+  ])
+
+  const { data } = await supabase
+  .from('barang')
+  .update({
+    stok: stock - qty
+  })
+  .eq('id', productId)
+
+  return productTransactions[0];
+}
+
 export const getNews = async (query) => {
   const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${newsApiConfig.key}&sortBy=popularity&pageSize=100`
   const response = await axios.get(url)

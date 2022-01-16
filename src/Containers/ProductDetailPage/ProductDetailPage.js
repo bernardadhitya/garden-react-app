@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getProductById } from '../../firebase';
+import { fetchCurrentUser, fireAuth, getProductById, purchaseProduct } from '../../firebase';
 import './ProductDetailPage.css';
 import StarIcon from '@material-ui/icons/Star';
 import { Grid, Snackbar, TextField } from '@material-ui/core';
@@ -23,6 +23,13 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      fireAuth.onAuthStateChanged(async user => {
+        if (user) {
+          const fetchedCurrentUser = await fetchCurrentUser();
+          console.log('current user:', fetchedCurrentUser);
+          setCurrentUser(fetchedCurrentUser);
+        }
+      })
       const fetchedItem = await getProductById(id);
       console.log(fetchedItem);
       setItem(fetchedItem);
@@ -31,9 +38,14 @@ const ProductDetailPage = () => {
   }, [refresh]);
 
   const handleProductTransaction = async () => {
-    // handle transaction to service
-    setSeverity('success');
-    setMessage('Selamat, pembelian produk berhasil!');
+    if (item.stok < quantity) {
+      setSeverity('error');
+      setMessage('Stok barang tidak cukup!');
+    } else {
+      await purchaseProduct(currentUser.id, item.id, item.harga, quantity, item.stok);
+      setSeverity('success');
+      setMessage('Selamat, pembelian produk berhasil!');
+    }
 
     setOpenSnackbar(true);
     setRefresh(refresh + 1);
