@@ -88,7 +88,7 @@ const ConsultantCard = (props) => {
               <div
                 className='consultant-redirect-button'
               >
-                <h4>Konsultasi</h4>
+                <h4>Cek Konsultan</h4>
               </div>
             </Grid>
           </Grid>

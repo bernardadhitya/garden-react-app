@@ -206,6 +206,7 @@ const Navbar = () => {
   return (
     <>
     <div class="navbar-full-wrapper">
+      <div style={{width: '300px', cursor: 'pointer'}} onClick={() => history.push('/')}/>
       <div class="navbar-wrapper">
         <div style={{display: 'flex', justifyContent: 'flex-end'}}>
           <div class='navbar-menu'>

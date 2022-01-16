@@ -20,8 +20,8 @@ const HomePage = () => {
       const fetchedConsultants = await getAllConsultants();
       const fetchedProducts = await getAllProducts();
       const fetchedNews = await getNews("gardening");
-      setConsultants(fetchedConsultants)
-      setProducts(fetchedProducts[0].slice(0,3))
+      setConsultants(fetchedConsultants[0].slice(0,3));
+      setProducts(fetchedProducts[0].slice(0,3));
       setNews(fetchedNews.slice(0,3));
     }
     fetchData();
@@ -108,7 +108,7 @@ const HomePage = () => {
           image={picture}
           name={nama}
           rating={rating}
-          productId={id}
+          consultantId={id}
         />
       )
     })
