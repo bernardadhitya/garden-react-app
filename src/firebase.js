@@ -10,11 +10,10 @@ export const fireAuth = firebase.auth();
 
 const supabase = createClient(supabaseConfig.url, supabaseConfig.key)
 
-export const signUp = async (email, password, username) => {
-  let userData = {};
+export const signUp = async (email, password, userData, userRole) => {
   fireAuth.createUserWithEmailAndPassword(email, password)
     .then(async data => {
-      userData = await createUser({username, email});
+      userData = await createUser({...userData, email}, userRole);
       console.log('SUCCESS SIGN UP');
     })
     .catch(error => console.log('FAILED SIGNUP'));
