@@ -336,3 +336,18 @@ export const startNewConsultation = async (clientId, consultantId, price) => {
 
   return { clientData, consultationData }
 }
+
+export const getLatestConsultationByClientId = async (clientId) => {
+  const { data: latestConsultation } = await supabase
+  .from('transaksi_konsultasi')
+  .select(`
+    id,
+    klien_id,
+    konsultan_id,
+    tanggal
+  `)
+  .eq('klien_id', clientId)
+  .order('tanggal', { ascending: false })
+
+  return latestConsultation !== null ? latestConsultation[0] : null
+}

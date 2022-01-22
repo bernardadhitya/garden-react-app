@@ -10,12 +10,13 @@ import {
   ListItemText
 } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
-import { fetchCurrentUser, fireAuth, signOut } from '../../firebase';
+import { fetchCurrentUser, fireAuth, getLatestConsultationByClientId, signOut } from '../../firebase';
 import { AccountCircleTwoTone } from '@material-ui/icons';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SearchBar from '../SearchBar/SearchBar';
 import CategoriesSelect from '../CategoriesSelect/CategoriesSelect';
+import moment from 'moment';
 
 const StyledMenu = withStyles({
   paper: {
@@ -51,6 +52,7 @@ const StyledMenuItem = withStyles((theme) => ({
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [redirectConsultation, setRedirectConsultation] = useState('/consultant');
 
   const history = useHistory();
   const location = useLocation();
@@ -62,6 +64,8 @@ const Navbar = () => {
           const fetchedCurrentUser = await fetchCurrentUser();
           console.log('current user:', fetchedCurrentUser);
           setCurrentUser(fetchedCurrentUser);
+          const fetchedRedirectConsultation = await handleRedirectConsultation(fetchedCurrentUser);
+          setRedirectConsultation(fetchedRedirectConsultation);
         }
       })
     }
@@ -178,11 +182,28 @@ const Navbar = () => {
     )
   }
 
+  const handleRedirectConsultation = async (fetchedCurrentUser) => {
+    if (fetchedCurrentUser === null) return '/consultant';
+
+    const latestConsultation = await getLatestConsultationByClientId(fetchedCurrentUser.id);
+
+    if (latestConsultation === null) return '/consultant';
+    
+    const { tanggal } = latestConsultation;
+    const endConsultationDateTime = moment(tanggal).add(1, 'hours');
+    const currentDateTime = moment();
+
+    if (currentDateTime.diff(endConsultationDateTime, 'minutes') < 0) return '/consultant';
+
+    return '/chat';
+  }
+
+
   const renderNavbarMenu = () => {
     const menuItems = [
       {
         'title': 'Konsultasi',
-        'redirect': '/consultant'
+        'redirect': redirectConsultation
       },
       {
         'title': 'Artikel',

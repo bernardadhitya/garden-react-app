@@ -12,6 +12,7 @@ import NewsPage from '../../Containers/NewsPage/NewsPage';
 import ConsultantPage from '../../Containers/ConsultantPage/ConsultantPage';
 import ConsultantDetailPage from '../../Containers/ConsultantDetailPage/ConsultantDetailPage';
 import TransactionPage from '../../Containers/TransactionPage/TransactionPage';
+import ChatPage from '../../Containers/ChatPage/ChatPage';
 
 const UserNavigation = ({match}) => {
   return (
@@ -28,6 +29,7 @@ const HomeNavigation = () => {
       <PublicRoute path='/home' component={HomePage}/>
       <PublicRoute path='/product/:id' component={ProductDetailPage}/>
       <PublicRoute path='/product' component={SearchPage}/>
+      <PublicRoute path='/chat' component={ChatPage}/>
       <PublicRoute path='/news' component={NewsPage}/>
       <PublicRoute path='/consultant/:id' component={ConsultantDetailPage}/>
       <PublicRoute path='/consultant' component={ConsultantPage}/>
