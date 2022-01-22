@@ -4,6 +4,7 @@ import 'firebase/auth';
 import { firebaseConfig, newsApiConfig, supabaseConfig } from './env';
 import { createClient } from '@supabase/supabase-js'
 import axios from 'axios';
+import moment from 'moment';
 
 firebase.initializeApp(firebaseConfig);
 export const fireAuth = firebase.auth();
@@ -308,4 +309,30 @@ export const getNews = async (query) => {
   const articles = data.articles
 
   return articles;
+}
+
+export const startNewConsultation = async (clientId, consultantId, price) => {
+  const { data: clientData } = await supabase
+  .from('klien')
+  .update([
+    {
+      konsultasi_terakhir: moment().add(1, 'hours')
+    },
+  ])
+  .eq('id', clientId)
+
+  const { data: consultationData, error } = await supabase
+  .from('transaksi_konsultasi')
+  .insert([
+    {
+      klien_id: clientId,
+      konsultan_id: consultantId,
+      tanggal: moment(),
+      harga: price,
+      qty: 1,
+      total_harga: price
+    },
+  ])
+
+  return { clientData, consultationData }
 }

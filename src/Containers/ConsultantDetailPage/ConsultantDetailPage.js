@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getConsultantById, getProductById } from '../../firebase';
+import { getConsultantById, getProductById, startNewConsultation, fetchCurrentUser } from '../../firebase';
 import './ConsultantDetailPage.css';
 import StarIcon from '@material-ui/icons/Star';
 import { Grid, Snackbar, TextField } from '@material-ui/core';
@@ -24,16 +24,26 @@ const ConsultantDetailPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const fetchedConsultant = await getConsultantById(id);
-      console.log(fetchedConsultant);
+      const fetchedCurrentUser = await fetchCurrentUser();
       setItem(fetchedConsultant);
+      setCurrentUser(fetchedCurrentUser);
+      console.log(fetchedCurrentUser);
     }
     fetchData();
   }, [refresh]);
 
-  const handleProductTransaction = async () => {
+  const handleConsultationTransaction = async () => {
     // handle transaction to service
-    setSeverity('success');
-    setMessage('Selamat, pembelian produk berhasil!');
+    if (currentUser === null || item === null) {
+      setSeverity('error');
+      setMessage('Terjadi kesalahan. Login terlebih dahulu');
+    } else {
+      setSeverity('success');
+      setMessage('Konsultan siap menjawab pertanyaan anda');
+
+      const data = await startNewConsultation(currentUser.id, id, item.harga)
+      console.log(data)
+    }
 
     setOpenSnackbar(true);
     setRefresh(refresh + 1);
@@ -113,23 +123,13 @@ const ConsultantDetailPage = () => {
             <Grid item xs={3}>
               <div
                 className='consultant-detail-redirect-button'
+                onClick={() => handleConsultationTransaction()}
               >
                 <h4>Konsultasi</h4>
               </div>
             </Grid>
           </Grid>
         </div>
-      </div>
-    )
-  }
-
-  const renderActionButtons = () => {
-    return (
-      <div
-      className='similar-consultant-redirect-button'
-      onClick={() => handleProductTransaction()}
-      >
-        <h4>Beli</h4>
       </div>
     )
   }
