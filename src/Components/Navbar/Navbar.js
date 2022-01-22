@@ -193,7 +193,7 @@ const Navbar = () => {
     const endConsultationDateTime = moment(tanggal).add(1, 'hours');
     const currentDateTime = moment();
 
-    if (currentDateTime.diff(endConsultationDateTime, 'minutes') < 0) return '/consultant';
+    if (currentDateTime.diff(endConsultationDateTime, 'minutes') > 0) return '/consultant';
 
     return '/chat';
   }

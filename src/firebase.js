@@ -188,12 +188,31 @@ export const getConsultationChat = async (clientId, consultantId) => {
     ),
     konsultan (
       nama
-    )
+    ),
+    pengirim
   `)
   .eq('klien_id', clientId)
   .eq('konsultan_id', consultantId)
+  .order('id', { ascending: true })
+
+  console.log(chats);
 
   return chats;
+}
+
+export const sendChat = async (message, sender, clientId, consultantId) => {
+  let { data: chat } = await supabase
+  .from('chat')
+  .insert([
+    {
+      klien_id: clientId,
+      konsultan_id: consultantId,
+      pesan: message,
+      pengirim: sender
+    }
+  ]);
+
+  return chat;
 }
 
 export const getProductTransactionByClientId = async (clientId) => {
