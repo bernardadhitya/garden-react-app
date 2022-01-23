@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import './Navbar.css';
-import logo from '../../Assets/images/logo.png'
 import {
   Grid,
   Menu,
@@ -13,9 +12,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { fetchCurrentUser, fireAuth, getLatestConsultationByClientId, signOut } from '../../firebase';
 import { AccountCircleTwoTone } from '@material-ui/icons';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import SearchBar from '../SearchBar/SearchBar';
-import CategoriesSelect from '../CategoriesSelect/CategoriesSelect';
 import moment from 'moment';
 
 const StyledMenu = withStyles({
