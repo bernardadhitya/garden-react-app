@@ -183,6 +183,7 @@ const Navbar = () => {
   }
 
   const handleRedirectConsultation = async (fetchedCurrentUser) => {
+    if (fetchedCurrentUser.role === 'consultant') return '/chat';
     if (fetchedCurrentUser === null) return '/consultant';
 
     const latestConsultation = await getLatestConsultationByClientId(fetchedCurrentUser.id);

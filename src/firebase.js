@@ -44,11 +44,14 @@ export const fetchCurrentUser = async () => {
 
 export const getUserByEmail = async (email) => {
   const userRole = await getUserRole(email);
+  let userData = {}
   if (userRole === 'client') {
-    return await getClientByEmail(email);
+    userData =  await getClientByEmail(email);
   } else {
-    return await getConsultantByEmail(email);
+    userData =  await getConsultantByEmail(email);
   }
+
+  return {...userData, role: userRole}
 }
 
 export const createUser = async (userData, userRole) => {
@@ -165,15 +168,36 @@ export const getConsultantById = async (id) => {
   return consultants[0];
 }
 
-export const getClientChatListByConsultantId = async (consultantId) => {
-  let { data: clientList } = await supabase
+export const getClientListByConsultantId = async (consultantId) => {
+  let { data: clients } = await supabase
   .from('chat')
   .select(`
     klien (
-      nama
-    )
+      id,
+      nama,
+      picture
+    ),
+    pesan
   `)
   .eq('konsultan_id', consultantId)
+  .order('id')
+
+  let clientNames = {}
+
+  clients.forEach(client => {
+    const { klien: { id, nama, picture }, pesan: message } = client;
+    if (!(nama in clientNames)){
+      clientNames[nama] = {id, picture, message};
+    } else {
+      clientNames[nama].message = message;
+    }
+  })
+
+  const clientList = []
+
+  for (const client in clientNames){
+    clientList.push({ ...clientNames[client], name: client})
+  }
 
   return clientList;
 }
@@ -368,5 +392,7 @@ export const getLatestConsultationByClientId = async (clientId) => {
   .eq('klien_id', clientId)
   .order('tanggal', { ascending: false })
 
-  return latestConsultation !== null ? latestConsultation[0] : null
+  console.log(latestConsultation)
+
+  return latestConsultation.length > 0 ? latestConsultation[0] : null
 }
