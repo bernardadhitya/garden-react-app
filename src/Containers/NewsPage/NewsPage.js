@@ -12,7 +12,6 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       let fetchedNews = await getNews("gardening");
-      // fetchedNews = fetchedNews.filter((article) => article.source.name === 'The Guardian')
       let groupedNews = []
       while (fetchedNews.length > 0) {
         groupedNews.push(fetchedNews.splice(0,21))

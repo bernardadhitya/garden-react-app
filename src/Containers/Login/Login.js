@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { Grid, TextField } from '@material-ui/core';
-import { signIn } from '../../firebase';
+import { signIn, fetchCurrentUser } from '../../firebase';
 import { useHistory } from "react-router-dom"
-import { fetchCurrentUser } from '../../firebase';
 import plants from '../../Assets/images/login-register-image.png'
 
 const Login = () => {

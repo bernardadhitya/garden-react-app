@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './Register.css';
 import { FormControlLabel, Grid, Radio, RadioGroup, TextField } from '@material-ui/core';
-import { signUp } from '../../firebase';
+import { signUp, fetchCurrentUser } from '../../firebase';
 import { useHistory } from 'react-router-dom';
-import { fetchCurrentUser } from '../../firebase';
 import plants from '../../Assets/images/login-register-image.png'
 
 const Register = () => {

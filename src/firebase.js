@@ -180,7 +180,7 @@ export const getClientListByConsultantId = async (consultantId) => {
     pesan
   `)
   .eq('konsultan_id', consultantId)
-  .order('id')
+  .order('id', { ascending: false })
 
   let clientNames = {}
 
@@ -188,8 +188,6 @@ export const getClientListByConsultantId = async (consultantId) => {
     const { klien: { id, nama, picture }, pesan: message } = client;
     if (!(nama in clientNames)){
       clientNames[nama] = {id, picture, message};
-    } else {
-      clientNames[nama].message = message;
     }
   })
 

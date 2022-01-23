@@ -1,41 +1,12 @@
-import {
-  Grid,
-  makeStyles,
-  Modal
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
-import { useHistory, useLocation } from 'react-router';
-import { fetchCurrentUser, fireAuth, getAllConsultants, getAllProducts, getConsultantsByName, getConsultationTransactionByCurrentUser, getProductsByQueries, getTransactionsByCurrentUser } from '../../firebase';
-import qs from 'query-string';
+import { useLocation } from 'react-router';
+import { fireAuth, getTransactionsByCurrentUser } from '../../firebase';
 import './TransactionPage.css';
 import Pagination from '@material-ui/lab/Pagination';
-import FilterModal from '../../Components/FilterModal/FilterModal';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import ItemCard from '../../Components/ItemCard/ItemCard';
-import { getAllCategories, getCategoriesByTopics } from '../../Constants/categories';
-import { allMarketplaces } from '../../Constants/marketplaces';
-import SortMenu from '../../Components/SortMenu/SortMenu';
 import TransactionCard from '../../Components/TransactionCard/TransactionCard';
 
-var _ = require('lodash');
-
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: '8px',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
 const TransactionPage = () => {
-  const classes = useStyles();
-  const history = useHistory();
   const location = useLocation();
 
   const [transactions, setTransactions] = useState([]);

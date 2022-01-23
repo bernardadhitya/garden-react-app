@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { fetchCurrentUser, fireAuth, getProductById, purchaseProduct } from '../../firebase';
 import './ProductDetailPage.css';
-import StarIcon from '@material-ui/icons/Star';
 import { Grid, Snackbar, TextField } from '@material-ui/core';
 import { formattedCurrency } from '../../Constants/format';
-import IconPrice from '../../Assets/icons/IconPrice';
-import { Favorite, FavoriteBorder } from '@material-ui/icons';
 import MuiAlert from '@material-ui/lab/Alert';
 
 const ProductDetailPage = () => {

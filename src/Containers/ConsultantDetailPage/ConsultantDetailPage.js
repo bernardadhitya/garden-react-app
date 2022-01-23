@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getConsultantById, getProductById, startNewConsultation, fetchCurrentUser } from '../../firebase';
+import { getConsultantById, startNewConsultation, fetchCurrentUser } from '../../firebase';
 import './ConsultantDetailPage.css';
 import StarIcon from '@material-ui/icons/Star';
-import { Grid, Snackbar, TextField } from '@material-ui/core';
+import { Grid, Snackbar } from '@material-ui/core';
 import { formattedCurrency } from '../../Constants/format';
-import IconPrice from '../../Assets/icons/IconPrice';
-import { Favorite, FavoriteBorder } from '@material-ui/icons';
 import MuiAlert from '@material-ui/lab/Alert';
 
 const ConsultantDetailPage = () => {
   const { id } = useParams();
 
   const [item, setItem] = useState(null);
-  const [quantity, setQuantity] = useState(0);
   const [currentUser, setCurrentUser] = useState(null);
   const [refresh, setRefresh] = useState(0);
   const [message, setMessage] = useState('');

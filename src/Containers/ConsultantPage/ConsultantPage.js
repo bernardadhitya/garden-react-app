@@ -1,49 +1,22 @@
-import {
-  Grid,
-  makeStyles,
-  Modal
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { getAllConsultants, getAllProducts, getConsultantsByName, getProductsByQueries } from '../../firebase';
+import { getAllConsultants, getConsultantsByName } from '../../firebase';
 import qs from 'query-string';
 import './ConsultantPage.css';
 import Pagination from '@material-ui/lab/Pagination';
-import FilterModal from '../../Components/FilterModal/FilterModal';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import ItemCard from '../../Components/ItemCard/ItemCard';
-import { getAllCategories, getCategoriesByTopics } from '../../Constants/categories';
-import { allMarketplaces } from '../../Constants/marketplaces';
-import SortMenu from '../../Components/SortMenu/SortMenu';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import ConsultantCard from '../../Components/ConsultantCard/ConsultantCard';
 
 var _ = require('lodash');
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: '8px',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
 const ConsultantPage = () => {
-  const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
 
   const [consultants, setConsultants] = useState([]);
   const [page, setPage] = useState(1);
   const [refresh, setRefresh] = useState(0);
-  const [sortBy, setSortBy] = useState('rating');
-  const [anchorSortMenu, setAnchorSortMenu] = useState(null);
 
   const queries = qs.parse(location.search);
 

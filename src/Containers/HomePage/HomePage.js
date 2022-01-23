@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ItemCard from '../../Components/ItemCard/ItemCard';
 import ConsultantCard from '../../Components/ConsultantCard/ConsultantCard';
-import { allMarketplaces } from '../../Constants/marketplaces';
 import { getAllConsultants, getAllProducts, getNews } from '../../firebase';
 import './HomePage.css';
 
