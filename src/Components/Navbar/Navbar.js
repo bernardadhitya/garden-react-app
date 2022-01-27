@@ -164,6 +164,7 @@ const Navbar = () => {
                 <Grid item xs={7}>
                   <div className='text-no-margin'>
                     <h5>{!!currentUser ? currentUser.nama : '-'}</h5>
+                    <h6>{!!currentUser ? currentUser.role : '-'}</h6>
                   </div>
                 </Grid>
               </Grid>
