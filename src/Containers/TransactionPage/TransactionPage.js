@@ -39,7 +39,7 @@ const TransactionPage = () => {
       </Grid>
     ) : (
       <div style={{margin: '40px 0 0 40px'}}>
-        <h3>Tidak menemukan barang yang anda cari</h3>
+        <h3>Anda tidak memiliki transaksi sejauh ini</h3>
       </div>
     )
   }

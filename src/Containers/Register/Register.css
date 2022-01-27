@@ -10,7 +10,6 @@
   align-items: center;
   height: 100vh;
   font-family: 'galano-grotesque-bold';
-  background-image: url('../../Assets/images/login-background.png');
 }
 .login-btn{
   background-color: #6AB484;

@@ -51,7 +51,7 @@ const ConsultantPage = () => {
       </Grid>
     ) : (
       <div style={{margin: '40px 0 0 40px'}}>
-        <h3>Tidak menemukan barang yang anda cari</h3>
+        <h3>Tidak menemukan konsultan yang anda cari</h3>
       </div>
     )
   }

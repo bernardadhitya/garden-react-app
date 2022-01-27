@@ -179,7 +179,6 @@ const ChatPage = () => {
   } 
 
   const renderChatWindow = () => {
-    if (item === null) return;
     return (
       <div className='chat-detail-wrapper'>
         <div style={{marginTop: '20px'}}>
@@ -241,9 +240,27 @@ const ChatPage = () => {
     )
   }
 
+  const renderEmptyPage = () => {
+    return (
+      <div style={{
+        width: '100%',
+        justifyContent: 'center',
+        textAlign: 'center',
+        paddingTop: '200px',
+        color: '#C5C5C5'
+      }}>
+        <h1>Tidak ada pesan masuk</h1>
+      </div>
+    )
+  }
+
   return (
     <>
-      {renderChatWindow()}
+      {
+        item !== null ?
+          renderChatWindow()
+          : renderEmptyPage()
+      }
     </>
   )
 
