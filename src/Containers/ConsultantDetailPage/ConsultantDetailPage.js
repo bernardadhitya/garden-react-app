@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getConsultantById, startNewConsultation, fetchCurrentUser } from '../../firebase';
+import { getConsultantById, startNewConsultation, fetchCurrentUser } from '../../service';
 import './ConsultantDetailPage.css';
 import StarIcon from '@material-ui/icons/Star';
 import { Grid, Snackbar } from '@material-ui/core';

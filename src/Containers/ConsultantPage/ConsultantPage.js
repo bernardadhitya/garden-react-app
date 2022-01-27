@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { getAllConsultants, getConsultantsByName } from '../../firebase';
+import { getAllConsultants, getConsultantsByName } from '../../service';
 import qs from 'query-string';
 import './ConsultantPage.css';
 import Pagination from '@material-ui/lab/Pagination';

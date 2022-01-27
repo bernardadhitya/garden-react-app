@@ -9,7 +9,7 @@ import {
   ListItemText
 } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
-import { fetchCurrentUser, fireAuth, getLatestConsultationByClientId, signOut } from '../../firebase';
+import { fetchCurrentUser, fireAuth, getLatestConsultationByClientId, signOut } from '../../service';
 import { AccountCircleTwoTone } from '@material-ui/icons';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import moment from 'moment';

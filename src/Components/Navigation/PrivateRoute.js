@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
-import { fetchCurrentUser } from '../../firebase';
+import { fetchCurrentUser } from '../../service';
 import Navbar from '../Navbar/Navbar';
 
 const isLoggedIn = async () => {

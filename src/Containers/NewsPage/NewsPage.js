@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react';
-import { getNews } from '../../firebase';
+import { getNews } from '../../service';
 import './NewsPage.css';
 
 const NewsPage = () => {

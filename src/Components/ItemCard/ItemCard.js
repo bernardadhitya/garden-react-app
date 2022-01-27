@@ -3,7 +3,7 @@ import React from 'react';
 import { formattedCurrency } from '../../Constants/format';
 import './ItemCard.css';
 import { useHistory } from 'react-router-dom';
-import {} from '../../firebase';
+import {} from '../../service';
 
 const ItemCard = (props) => {
   const {

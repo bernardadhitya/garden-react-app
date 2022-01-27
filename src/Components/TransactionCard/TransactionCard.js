@@ -3,7 +3,7 @@ import React from 'react';
 import StarIcon from '@material-ui/icons/Star';
 import './TransactionCard.css';
 import { useHistory } from 'react-router-dom';
-import {} from '../../firebase';
+import {} from '../../service';
 import { formattedCurrency } from '../../Constants/format';
 
 const TransactionCard = (props) => {

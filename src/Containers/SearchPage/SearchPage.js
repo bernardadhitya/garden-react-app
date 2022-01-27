@@ -4,7 +4,7 @@ import {
 } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { getAllProducts, getProductsByTitle } from '../../firebase';
+import { getAllProducts, getProductsByTitle } from '../../service';
 import qs from 'query-string';
 import './SearchPage.css';
 import Pagination from '@material-ui/lab/Pagination';

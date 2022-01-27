@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 import { FormControlLabel, Grid, Radio, RadioGroup, TextField } from '@material-ui/core';
-import { signUp, fetchCurrentUser } from '../../firebase';
+import { signUp, fetchCurrentUser } from '../../service';
 import { useHistory } from 'react-router-dom';
 import plants from '../../Assets/images/login-register-image.png'
 

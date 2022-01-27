@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
 import { useLocation } from 'react-router';
-import { fireAuth, getTransactionsByCurrentUser } from '../../firebase';
+import { fireAuth, getTransactionsByCurrentUser } from '../../service';
 import './TransactionPage.css';
 import Pagination from '@material-ui/lab/Pagination';
 import TransactionCard from '../../Components/TransactionCard/TransactionCard';

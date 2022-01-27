@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { fetchCurrentUser, fireAuth, getProductById, purchaseProduct } from '../../firebase';
+import { fetchCurrentUser, fireAuth, getProductById, purchaseProduct } from '../../service';
 import './ProductDetailPage.css';
 import { Grid, Snackbar, TextField } from '@material-ui/core';
 import { formattedCurrency } from '../../Constants/format';

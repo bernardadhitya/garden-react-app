@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ItemCard from '../../Components/ItemCard/ItemCard';
 import ConsultantCard from '../../Components/ConsultantCard/ConsultantCard';
-import { getAllConsultants, getAllProducts, getNews } from '../../firebase';
+import { getAllConsultants, getAllProducts, getNews } from '../../service';
 import './HomePage.css';
 
 const HomePage = () => {

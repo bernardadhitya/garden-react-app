@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getConsultantById, fetchCurrentUser, getLatestConsultationByClientId, fireAuth, getConsultationChat, sendChat, getClientListByConsultantId } from '../../firebase';
+import { getConsultantById, fetchCurrentUser, getLatestConsultationByClientId, fireAuth, getConsultationChat, sendChat, getClientListByConsultantId } from '../../service';
 import './ChatPage.css';
 import StarIcon from '@material-ui/icons/Star';
 import { Grid, TextField } from '@material-ui/core';
